@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">LMS</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Book
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/add-book">Add Book</a></li>
+            <li><a class="dropdown-item" href="/librarian-view-books">View Book</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Section
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/add-section">Add Section</a></li>
+            <li><a class="dropdown-item" href="/view-sections">View Sections</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            User
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/add-user">Add User</a></li>
+            <li><a class="dropdown-item" href="/view-users">View User</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/view-feedbacks">Feedback</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/librarian-charts">Statistics</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="btn btn-outline-dark" href="/revoke-requests">Auto Revoke</a>
+          <a class="btn btn-outline-dark" href="/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

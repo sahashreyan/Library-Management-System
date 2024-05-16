@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Librarian | Dashboard
+{% endblock %}
+
+
+{% block style %}
+body {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width:auto
+}
+.navbar {
+    background-color: #000003;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    padding: 15px;
+    color: #03effb;
+    font-size: larger;
+    justify-content: space-between;
+    font-family: 'Lucida Sans';
+}
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container mx-auto">
+    {% if message %}
+        {% if type %}
+            <div class="alert alert-{{type}} alert-dismissible fade show mt-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% else %}
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+<div class = "container my-5">
+    <h1 class = "text-center">Book Requests</h1>
+    <div class = "row my-4">
+        <div class = "col-md-8">
+            <form class = "form-inline" method = "GET" action = "{{url_for('librarian_dashboard')}}">             
+            </form>
+        </div>
+    </div>
+</div>
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>User Id</th>
+            <th>Username</th>
+            <th>Book Id</th>
+            <th>Book Title</th>
+            <th>Section</th>
+            <th>Request Date</th>
+            <th>Number of Days</th>
+            <th>Action</th>     
+        </tr>
+    </thead>
+    <tbody>
+        {% for request in requests %}
+            {% if request.status == 'Pending' %}
+        <tr>
+            <td>{{request.id}}</td>
+            <td>{{request.user_id}}</td>
+            <td>{{request.username}}</td>
+            <td>{{request.book_id}}</td>
+            <td>{{request.book_title}}</td>
+            <td>{{request.section_name}}</td>
+            <td>{{request.request_date}}</td>
+            <td>{{request.number_of_days}}</td>
+            <td>
+                <a href = "/approve-bookrequest/{{request.id}}" " class = "btn btn-success">Accept</a>
+                <a href = "/reject-request/{{request.id}}" class = "btn btn-danger">Reject</a>
+            </td>
+        </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

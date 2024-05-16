@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Section wise Book Count</title>
+        <script src = "https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <canvas id = "sectionBookChart" width="800" height="800"></canvas>
+        <script>
+            var section_name = JSON.parse('{{section_name | tojson | safe}}');
+            var book_count = JSON.parse('{{book_count | tojson | safe}}');
+        </script>
+            <script>
+                var ctx = document.getElementById('sectionBookChart').getContext('2d');
+                var sectionBookChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: section_name,
+                        datasets: [{
+                            label: 'Book Count',
+                            fontSize: 20,
+                            data: book_count,
+                            backgroundColor: '#063970',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            hoverBackgroundColor: '#2DC959',
+
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Section wise Book Count',
+                                fontSize: 24,
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                stepSize: 1
+                            }
+                        }
+                    }
+                });
+            </script>
+    </body>
+</html>

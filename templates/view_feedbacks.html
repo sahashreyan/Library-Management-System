@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Feedback from Users</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
+    <style>
+        .navbar-nav .nav-link {
+            color: black !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">LMS</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Book
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/add-book">Add Book</a></li>
+                  <li><a class="dropdown-item" href="/librarian-view-books">View Book</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Section
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/add-section">Add Section</a></li>
+                  <li><a class="dropdown-item" href="/view-sections">View Sections</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  User
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/add-user">Add User</a></li>
+                  <li><a class="dropdown-item" href="/view-users">View User</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Dashboard
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                  <li><a class="dropdown-item" href="/librarian-dashboard">Dashboard</a></li>
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>          
+    <div class='container my-5'>
+        <h1>Feedbacks</h1>
+        <div class="row my-4">
+            <div class="col-md-8">
+                <form class="form-inline" method="GET" action="{{url_for('view_feedbacks')}}">
+                    <div class="form-group mr-2">
+                        <input type="text" class="form-control" id="search_query" name="search_query" placeholder="Search ...">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User Id</th>
+                <th>Username</th>
+                <th>Book Id</th>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>Section</th>
+                <th>Feedback</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for feedback in feedbacks %}
+            <tr>
+                <td>{{feedback.id}}</td>
+                <td>{{feedback.user_id}}</td>
+                <td>{{feedback.username}}</td>
+                <td>{{feedback.book_id}}</td>
+                <td>{{feedback.book_title}}</td>
+                <td>{{feedback.book_author}}</td>
+                <td>{{feedback.section_name}}</td>
+                <td>{{feedback.feedback}}</td>
+                <td>{{feedback.feedback_date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById('search_query').addEventListener('input', function () {
+            let searchQuery = this.value.toLowerCase();
+            let rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                let username = row.cells[2].textContent.toLowerCase();
+                let book_title = row.cells[4].textContent.toLowerCase();
+                let author = row.cells[5].textContent.toLowerCase();
+                let section = row.cells[6].textContent.toLowerCase();
+                if (username.includes(searchQuery) || book_title.includes(searchQuery)|| section.includes(searchQuery) || author.includes(searchQuery)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

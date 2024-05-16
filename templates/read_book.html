@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous" />
+        <title>Read Book</title>
+        <style>
+            body {
+                background-color: #72cbe4;
+                background-image: linear-gradient(to bottom right, #648ab8, #203c8f);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                padding: 20px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h1 {
+                border: 2px solid #000;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: #f67904;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                color: #ffffff;
+            }
+            h2
+            {
+                text-align: center;
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                color: #ffffff;
+            }
+            .book-content {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            overflow-wrap: break-word;
+        }
+        .go-back-button {
+            text-align: left;
+            margin-top: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .go-back-button a {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }.go-back-button a:hover {
+            background-color: #26a120;
+        }
+        </style>
+
+
+    </head>
+    <body>
+        <h1>{{book.title}}</h1>
+        <h2>By {{book.author}}</h2>
+        <div class = "book-content">
+            <p>{{book.content}}</p>
+        </div>
+        <div class = "go-back-button">
+                <a href="/mybooks/{{user}}">Go Back to My Books</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}
+Librarian | Add User
+{% endblock %}
+
+{% block style %}
+body {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width:auto
+}
+form {
+    justify-content: center;
+    text-align: center;
+    width: 100%; 
+    max-width: 600px; 
+    margin: 0 auto;
+    margin-top: 240px; 
+    font-size: 20px;
+    font-stretch: extra-expanded;
+    font-family: Arial;
+}
+h3 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;;
+}
+.container {
+    width: 100%;
+    padding: 20px;
+    background-color: #8ec0f0;
+    border: 3px solid #ccc;
+    border-radius: 5px;       
+}
+.container label {
+    display:block;
+    margin-bottom: 5px;
+}
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: #473fe0;
+    border-color: #0062cc;
+}
+h3{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.navbar {
+    background-color: #000003;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    padding: 15px;
+    color: #03effb;
+    font-size: larger;
+    justify-content: space-between;
+    font-family: 'Lucida Sans';
+}
+
+{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="\">LMS</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="\">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Book
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/add-book">Add Book</a></li>
+              <li><a class="dropdown-item" href="#">View Book</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Section
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/add-section">Add Section</a></li>
+              <li><a class="dropdown-item" href="#">View Section</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              User
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">View User</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
+<div class="message mx-5">
+    {% if message %}
+        {% if type %}
+            <div class="alert alert-{{type}} alert-dismissible fade show mt-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% else %}
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+
+
+<form method="POST" action="/add-user">
+    <h3>Add User</h3>
+    <div class= "container">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>               
+    </div>
+    <div class="container">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
